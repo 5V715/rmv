@@ -1,0 +1,13 @@
+rmv:
+  stop-url: https://opendata.rmv.de/site/files/rmv01/RMV_Haltestellen.zip
+
+spring:
+  jpa:
+    database: h2
+    hibernate:
+      ddl-auto: create-drop
+  datasource:
+    url: jdbc:h2:mem:Stops
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
