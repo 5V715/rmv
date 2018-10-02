@@ -10,9 +10,9 @@ interface StopRepository : CrudRepository<Stop, Long> {
 
     @Query("SELECT DISTINCT hfasId,municipality,stopName,planName" +
             " FROM Stop s" +
-            " WHERE s.municipality LIKE %:query%" +
-            " OR s.stopName LIKE %:query%" +
-            " OR s.planName LIKE %:query%" +
+            " WHERE UPPER(s.municipality) LIKE UPPER(concat('%',concat(?1, '%')))" +
+            " OR UPPER(s.stopName) LIKE UPPER(concat('%',concat(?1, '%')))" +
+            " OR UPPER(s.planName) LIKE UPPER(concat('%',concat(?1, '%')))" +
             " ORDER BY hfasId ASC")
     fun findByName(query: String): List<Array<Any>>
 
