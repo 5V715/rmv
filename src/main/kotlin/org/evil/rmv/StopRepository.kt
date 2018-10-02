@@ -16,6 +16,8 @@ interface StopRepository : CrudRepository<Stop, Long> {
             " ORDER BY hfasId ASC")
     fun findByName(query: String): List<Array<Any>>
 
+    fun findByHfasId(id: Long): Stop
+
 }
 
 data class SearchResult(val hfasId: Long,

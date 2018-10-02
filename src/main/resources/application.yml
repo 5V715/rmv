@@ -1,5 +1,6 @@
 rmv:
   stop-url: https://opendata.rmv.de/site/files/rmv01/RMV_Haltestellen.zip
+  api-key: ${API_KEY}
 
 spring:
   jpa:

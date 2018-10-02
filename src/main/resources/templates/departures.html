@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${stationName}">Some Title</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="../../css/departure-board.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+
+<div id="board"></div>
+
+<script src="../../js/departure-board.js"></script>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+
+    var board = new DepartureBoard(document.getElementById('board'), {rowCount: 25, letterCount: 40});
+    var stationId = /*[[${stationId}]]*/ '3006907';
+    var initialData = /*[[${initialData}]]*/ [];
+
+    board.setValue(initialData)
+
+    window.setTimeout(function () {
+        $.get("/station-data/" + stationId, function (data) {
+            board.setValue(data.splice(0, 24));
+        });
+    }, 12000);
+    /*]]>*/
+</script>
+</body>
+</html>
