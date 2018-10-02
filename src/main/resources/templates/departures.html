@@ -2,30 +2,77 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title th:text="${stationName}">Some Title</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="stylesheet" href="../../css/departure-board.css"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link href="../../css/flapper.css" type="text/css" rel="stylesheet"/>
+    <link href="../../css/app.css" type="text/css" rel="stylesheet"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="../../js/jquery.transform-0.9.3.min.js"></script>
+    <script src="../../js/jquery.flapper.js"></script>
+    <script src="../../js/app.js"></script>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+
+        $(document).ready(function () {
+
+            new FlapDisplay('input.display', /*[[${stationId}]]*/ '3000525', /*[[${initialData}]]*/ [])
+
+        });
+        /*]]>*/
+    </script>
 </head>
 <body>
-
-<div id="board"></div>
-
-<script src="../../js/departure-board.js"></script>
-<script th:inline="javascript">
-    /*<![CDATA[*/
-
-    var board = new DepartureBoard(document.getElementById('board'), {rowCount: 25, letterCount: 40});
-    var stationId = /*[[${stationId}]]*/ '3006907';
-    var initialData = /*[[${initialData}]]*/ [];
-
-    board.setValue(initialData)
-
-    window.setTimeout(function () {
-        $.get("/station-data/" + stationId, function (data) {
-            board.setValue(data.splice(0, 24));
-        });
-    }, 12000);
-    /*]]>*/
-</script>
+<div class="page">
+    <div class="displays">
+        <div class="activity"></div>
+        <input class="display S"/>
+        <div class="activity"></div>
+        <input class="display S"/>
+        <div class="activity"></div>
+        <input class="display S"/>
+        <div class="activity"></div>
+        <input class="display S"/>
+        <div class="activity"></div>
+        <input class="display S"/>
+        <div class="activity"></div>
+        <input class="display S"/>
+        <div class="activity"></div>
+        <input class="display S"/>
+        <div class="activity"></div>
+        <input class="display S"/>
+        <div class="activity"></div>
+        <input class="display S"/>
+        <div class="activity"></div>
+        <input class="display S"/>
+        <div class="activity"></div>
+        <input class="display S"/>
+        <div class="activity"></div>
+        <input class="display S"/>
+        <div class="activity"></div>
+        <input class="display S"/>
+        <div class="activity"></div>
+        <input class="display S"/>
+        <div class="activity"></div>
+        <input class="display S"/>
+        <div class="activity"></div>
+        <input class="display S"/>
+        <div class="activity"></div>
+        <input class="display S"/>
+        <div class="activity"></div>
+        <input class="display S"/>
+        <div class="activity"></div>
+        <input class="display S"/>
+        <div class="activity"></div>
+        <input class="display S"/>
+        <div class="activity"></div>
+        <input class="display S"/>
+        <div class="activity"></div>
+        <input class="display S"/>
+        <div class="activity"></div>
+        <input class="display S"/>
+        <div class="activity"></div>
+        <input class="display S"/>
+        <div class="activity"></div>
+        <input class="display S"/>
+    </div>
+</div>
 </body>
 </html>
