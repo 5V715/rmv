@@ -55,7 +55,7 @@ var FlapDisplay = function (display_selector, stationId, initialData) {
     this.opts = {
         chars_preset: 'alphanum',
         align: 'left',
-        width: 60,
+        width: 40,
         on_anim_start: onAnimStart,
         on_anim_end: onAnimEnd
     };
@@ -70,15 +70,11 @@ var FlapDisplay = function (display_selector, stationId, initialData) {
 
     this.$displays.flapper(this.opts);
 
-    var buffer = _this.parseInput(initialData.splice(0, 24).join("\n"));
-    _this.stopDisplay();
-    _this.updateDisplay(buffer);
+    _this.setFromData(initialData)
 
     setTimeout(function () {
         $.get("/station-data/" + stationId, function (data) {
-            var buffers = _this.parseInput(data.splice(0, 24).join("\n"));
-            _this.stopDisplay();
-            _this.updateDisplay(buffers);
+            _this.setFromData(data)
         });
     }, 12000);
 };
@@ -87,6 +83,12 @@ FlapDisplay.prototype = {
 
     cleanInput: function (text) {
         return text.trim().toUpperCase();
+    },
+
+    setFromData : function ( data ) {
+        var buffers = _this.parseInput(data.splice(0, this.num_lines).join("\n"));
+        _this.stopDisplay();
+        _this.updateDisplay(buffers);
     },
 
     parseInput: function (text) {
